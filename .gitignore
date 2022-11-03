@@ -1,0 +1,10 @@
+/Birlik.Api/obj
+/Birlik.Api/bin
+
+/Birlik.Data/obj
+/Birlik.Data/bin
+
+/Birlik.Core/obj
+/Birlik.Core/bin
+
+.env
