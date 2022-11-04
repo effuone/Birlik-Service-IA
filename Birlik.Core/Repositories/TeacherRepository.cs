@@ -8,9 +8,10 @@ namespace Birlik.Core.Repositories
     public class TeacherRepository : ITeacherRepository
     {
         private readonly BirlikDbContext _context;
-        public TeacherRepository(BirlikDbContext db)
+
+        public TeacherRepository(BirlikDbContext context)
         {
-            _context = db;
+            _context = context;
         }
 
         public async Task<int> CreateAsync(Teacher model)

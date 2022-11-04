@@ -16,7 +16,7 @@ namespace Birlik.Core.Repositories
         }
 
 
-        public async Task<int> CreateAsync(string env, FileModel model, IFormFile uploadFile)
+        public async Task<int> CreateFileAsync(string env, string path, IFormFile uploadFile)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -24,12 +24,12 @@ namespace Birlik.Core.Repositories
                 // Upload the file if less than 2 MB
                 if (memoryStream.Length < 2097152)
                 {
-                    if(!Directory.Exists(env + $"{model.FilePath}"))
+                    if(!Directory.Exists(env + $"{path}"))
                     {
-                        Directory.CreateDirectory(model.FilePath);
+                        Directory.CreateDirectory(path);
                     }
                     string fileName = uploadFile.FileName;
-                    var physicalPath = env + @$"{model.FilePath}/" + fileName;
+                    var physicalPath = env + @$"{path}/" + fileName;
                     using(var stream = new FileStream(physicalPath, FileMode.Create))
                     {
                         await uploadFile.CopyToAsync(stream);
@@ -38,6 +38,9 @@ namespace Birlik.Core.Repositories
                             await uploadFile.CopyToAsync(ms);
                         }
                     }
+                    var model = new FileModel();
+                    model.FilePath = physicalPath;
+                    model.FileName = uploadFile.FileName;
                     await _context.Files.AddAsync(model);
                     await _context.SaveChangesAsync();
                     return model.Id; 

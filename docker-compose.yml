@@ -12,7 +12,7 @@ services:
     image: birlikservice
     build:
       context: .
-      dockerfile: Birlik.Api/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - 8080:80
     depends_on:

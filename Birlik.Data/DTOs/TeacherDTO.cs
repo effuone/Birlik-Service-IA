@@ -10,7 +10,7 @@ namespace Birlik.Data.DTOs
         public string LastName { get; set; }
         public string UIN {get; set;}
         public string Pedemastership {get; set;}
-        public DateOnly JoinDate { get; set; }
+        public DateTime JoinDate { get; set; }
         public string Email {get; set;}
         public string PhoneNumber {get; set;}
         public string Resume {get; set;}
@@ -21,7 +21,7 @@ namespace Birlik.Data.DTOs
         public string LastName { get; set; }
         public string UIN {get; set;}
         public int Pedemastership {get; set;}
-        public DateOnly JoinDate { get; set; }
+        public DateTime JoinDate { get; set; }
         public string Email {get; set;}
         public string PhoneNumber {get; set;}
         public IFormFile Resume {get; set;}
@@ -32,7 +32,7 @@ namespace Birlik.Data.DTOs
         public string LastName { get; set; }
         public string UIN {get; set;}
         public int Pedemastership {get; set;}
-        public DateOnly JoinDate { get; set; }
+        public DateTime JoinDate { get; set; }
         public string Email {get; set;}
         public string PhoneNumber {get; set;}
         public IFormFile Resume {get; set;}

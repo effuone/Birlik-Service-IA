@@ -10,8 +10,8 @@ namespace Birlik.Data.Profiles
         public TeacherProfile()
         {
             //Mapping task entity modelss
-            CreateMap<CreateTeacherDTO, TeacherDTO>();
-            CreateMap<UpdateTeacherDTO, TeacherDTO>();
+            CreateMap<CreateTeacherDTO, Teacher>().ForMember(x=>x.Resume, o=>o.Ignore());
+            CreateMap<UpdateTeacherDTO, Teacher>().ForMember(x=>x.Resume, o=>o.Ignore());
             CreateMap<Teacher, TeacherDTO>();
 
             // //Mapping project entity models

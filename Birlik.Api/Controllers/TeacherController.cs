@@ -50,16 +50,15 @@ namespace Birlik.Api.Controllers
             {
                 return BadRequest();
             }
+            int resumeId = await _fileRepository.CreateFileAsync(_env.ContentRootPath, "Resumes", createTeacherDTO.Resume);
+
             var entity = _mapper.Map<CreateTeacherDTO, Teacher>(createTeacherDTO, new Teacher());
-            var resumeFile = new FileModel();
-            var avatarFile = new FileModel();
+            entity.ResumeId = resumeId;
             entity.Id = await _teacherRepository.CreateAsync(entity);
-            resumeFile.FilePath = "/resumes/";
-            resumeFile.Teacher = entity;
             // resumeFile.TeacherId = entity.Id;
-            resumeFile.Id = await _fileRepository.CreateAsync(_env.ContentRootPath, resumeFile, createTeacherDTO.Resume);
             var dto = _mapper.Map<Teacher, TeacherDTO>(entity, new TeacherDTO());
             dto.Resume = createTeacherDTO.Resume.FileName;
+            // dto.Pedemastership = Enum.GetName(typeof(Pedemastership), Convert.ToInt32(dto.Pedemastership));  
             return CreatedAtAction(nameof(GetTeacherAsync), new { id = entity.Id }, entity);
         }
     }

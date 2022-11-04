@@ -4,8 +4,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
-COPY ["Birlik.Api/Birlik.Data.csproj", "Birlik.Data/"]
-COPY ["Birlik.Api/Birlik.Domain.csproj", "Birlik.Domain/"]
+COPY ["Birlik.Data/Birlik.Data.csproj", "Birlik.Data/"]
+COPY ["Birlik.Core/Birlik.Core.csproj", "Birlik.Core/"]
 COPY ["Birlik.Api/Birlik.Api.csproj", "Birlik.Api/"]
 RUN dotnet restore "Birlik.Api/Birlik.Api.csproj"
 COPY . .

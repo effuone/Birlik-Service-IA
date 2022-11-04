@@ -11,15 +11,12 @@ namespace Birlik.Data.Context
         public DbSet<FileModel> Files { get; set; }
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
-        //     optionsBuilder.UseNpgsql("");
+        //     optionsBuilder.UseSqlServer("");
         // }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Teacher>().HasIndex(x=>x.UIN).IsUnique(true);
-            builder.Entity<Teacher>()
-            .HasOne(a => a.Resume)
-            .WithOne(b => b.Teacher)
-            .HasForeignKey<FileModel>(b => b.TeacherId);
+            builder.Entity<Teacher>().HasOne(s=>s.Resume).WithOne(x=>x.Teacher).HasForeignKey<Teacher>(e=>e.ResumeId);
         }
     }
 }

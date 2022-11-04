@@ -16,7 +16,12 @@ var port = builder.Configuration["DB_PORT"];
 var user = builder.Configuration["DB_USER"];
 var password = builder.Configuration["DB_PASSWORD"];
 var database = builder.Configuration["DB_DATABASE"];
-var connectionString = $"Server=tcp:{server}, {port};Database={database};User Id={user};Password={password}";   
+var connectionString = $"Server=tcp:{server}, {port};Database={database};User Id={user};Password={password}"; 
+Console.WriteLine(connectionString);  
+Console.WriteLine(connectionString);  
+Console.WriteLine(connectionString);  
+Console.WriteLine(connectionString);  
+Console.WriteLine(connectionString);  
 // var connectionString = $"Server=tcp:{server}, {port};Database={database};User Id={user};Password={password}";
 builder.Services.AddDbContext<BirlikDbContext>(options=>options.UseSqlServer(connectionString));
 
@@ -46,6 +51,8 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseHsts();
 }
 
